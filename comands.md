@@ -21,3 +21,8 @@ A versão mais nova do lint-staged (v10.0.0) não aceita mais que utilize o git 
 A biblioteca eslint-config-standard-with-typescript deve ser usada com a versão ^16.0.0. Versões mais recentes dessa biblioteca estão dando conflito com o eslint.
 
 A biblioteca @typescript-eslint/eslint-plugin deve ser usada na versão ^2.33.0.
+
+jest --clearCache
+
+# passar para versao ^11.0.1 por quasa do erro await + eslint
+"eslint-config-standard-with-typescript": "^19.0.1",
