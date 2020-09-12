@@ -12,6 +12,9 @@ npm install -D husky
 # add lint state // Sao os arquivos que vao no proximo commit
 npm install -D lint-staged
 
+# add jest para fazer teste com typescripts
+npm install -D jest @types/jest ts-jest 
+
 // Dicas
 A versão mais nova do lint-staged (v10.0.0) não aceita mais que utilize o git add no fim do script. Ele já faz isso automaticamente. Basta remover do array de scripts do .lintstagedrc.json a linha do "git add".
 
