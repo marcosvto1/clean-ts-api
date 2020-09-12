@@ -1,0 +1,9 @@
+{
+  "compilerOptions": {
+    "outDir": "./dist", // aonde vai gerar os arquivos js,
+    "module": "commonjs", // vai gerar usando os imports usando require
+    "target": "es2019", // Gerar com padrão do es2019 
+    "esModuleInterop": true, // convert module using require in import
+    "allowJs": true // permiti incluir arquivos de config .js no dist 
+  }
+}
