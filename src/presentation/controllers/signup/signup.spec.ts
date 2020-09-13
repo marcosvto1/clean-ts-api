@@ -1,9 +1,6 @@
 import { SignUpController } from './signup';
-import { MissingParamError, InvalidParamError, ServerError } from '../errors';
-import { EmailValidator } from '../protocols';
-import { AddAccount, AddAccountModel } from '../../domain/usecases/add-account';
-import { AccountModel } from '../../domain/models/account';
-
+import { MissingParamError, InvalidParamError, ServerError } from '../../errors';
+import { EmailValidator, AddAccount, AddAccountModel, AccountModel } from './signup-protocols';
 
 const makeEmailValidator = (): EmailValidator => {
   class EmailValidatorStub implements EmailValidator {
@@ -32,7 +29,7 @@ const makeAddAccount = (): AddAccount => {
   return addAccountStub;
 }
 
-const makeEmailValidatorWithError = (): EmailValidator => {
+/*const makeEmailValidatorWithError = (): EmailValidator => {
   class EmailValidatorStub implements EmailValidator {
     isValid (email: string): boolean {
       throw new Error(); // inicializar sempre positivos nos mocks
@@ -40,7 +37,7 @@ const makeEmailValidatorWithError = (): EmailValidator => {
   }
   const emailValidatorStub = new EmailValidatorStub();
   return emailValidatorStub;
-}
+} */
 
 interface SutTypes{
   sut: SignUpController,
