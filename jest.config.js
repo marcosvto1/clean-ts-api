@@ -11,6 +11,7 @@ module.exports = {
     '!**/protocols/**',
     '!**/test/**'
   ],
+  preset: '@shelf/jest-mongodb',
 
   // The directory where Jest should output its coverage files
   coverageDirectory: 'coverage',
