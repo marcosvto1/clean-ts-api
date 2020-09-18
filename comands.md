@@ -26,3 +26,22 @@ jest --clearCache
 
 # passar para versao ^11.0.1 por quasa do erro await + eslint
 "eslint-config-standard-with-typescript": "^19.0.1",
+
+# using anotated tag github
+1.0.0
+
+# guide version
+1 (radical change) 0 (news feats) 0 (increments for fix bugs)
+
+# comand
+- anotated
+- message
+
+git tag -a "1.0.0" -m "1.0.0"
+
+# push tags github
+git push origin master --tags (all)
+git push origin master --follow-tags (anotated)
+
+# add shortcut
+git config --global --edit (user config)
