@@ -1,12 +1,7 @@
-import { HttpRequest } from './../../protocols/http';
-import { EmailValidator } from './../../protocols/email-validator';
-import { Controller } from './../../protocols/controller';
-import { MissingParamError } from './../../errors/missing-param-error';
-import { badRequest, serverError, unauthorized } from './../../helpers/http-helper';
-import supertest from "supertest";
 import { LoginController } from "./login";
-import { InvalidParamError, ServerError } from '../../errors';
-import { Authentication } from '../../../domain/usecases/authentication';
+import { InvalidParamError, MissingParamError } from '../../errors';
+import { Authentication, Controller, EmailValidator, HttpRequest } from './login-protocols';
+import { badRequest, serverError, unauthorized } from './../../helpers/http-helper';
 
 const makeRequest = (): HttpRequest => {
   return {
