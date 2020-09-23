@@ -3,6 +3,7 @@ import { SignUpController } from './signup';
 import { MissingParamError, InvalidParamError, ServerError } from '../../errors';
 import { EmailValidator, AddAccount, AddAccountModel, AccountModel } from './signup-protocols';
 import { ok, serverError, badRequest } from './../../helpers/http-helper';
+import { Validation } from '../../helpers/validators/validation';
 
 const makeEmailValidator = (): EmailValidator => {
   class EmailValidatorStub implements EmailValidator {
@@ -31,6 +32,16 @@ const makeAddAccount = (): AddAccount => {
   return addAccountStub;
 }
 
+const makeValidation = (): Validation => {
+  class ValidationStub implements Validation {
+    validate(input: any): Error {
+      return null;
+    }
+  }
+  const validationStub = new ValidationStub();
+  return validationStub;
+}
+
 /*const makeEmailValidatorWithError = (): EmailValidator => {
   class EmailValidatorStub implements EmailValidator {
     isValid (email: string): boolean {
@@ -55,16 +66,19 @@ const makeFakeRequest = (): HttpRequest => {
 interface SutTypes{
   sut: SignUpController,
   emailValidatorStub: EmailValidator,
-  addAccountStub: AddAccount
+  addAccountStub: AddAccount,
+  validationStub: Validation
 }
 
 const makeSut = (): SutTypes => {
   const emailValidatorStub = makeEmailValidator();
   const addAccountStub = makeAddAccount();
-  const sut = new SignUpController(emailValidatorStub, addAccountStub)
+  const validationStub = makeValidation();
+  const sut = new SignUpController(emailValidatorStub, addAccountStub, validationStub);
   return {
     emailValidatorStub,
     addAccountStub,
+    validationStub, 
     sut
   }
 }
@@ -218,6 +232,14 @@ describe('SignUp Controller', () => {
     const {sut } = makeSut();
     const httpResponse = await sut.handle(makeFakeRequest());
     expect(httpResponse).toEqual(ok(makeFakerAccount()));
+  });
+
+  test('Should call Validation with correct value', () => {
+    const { sut, validationStub }  = makeSut();
+    const validadeSpy = jest.spyOn(validationStub, 'validate');
+    const httpRequest = makeFakeRequest();
+    sut.handle(makeFakeRequest());
+    expect(validadeSpy).toHaveBeenCalledWith(httpRequest.body);
   });
 
 })
