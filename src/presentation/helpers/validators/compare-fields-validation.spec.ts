@@ -16,11 +16,11 @@ describe('RequiredField Validation', () => {
     expect(isValid).toEqual(new InvalidParamError('any_field_compare'));
   });
 
-  /* test('Should not return if validation success', () => {
+  test('Should not return if validation success', () => {
     const sut = makeSut();
-    const isValid = sut.validate({any_field: 'any_value'});
+    const isValid = sut.validate({any_field: 'any_value', any_field_compare: 'any_value'});
     expect(isValid).toBeUndefined();
-  }) */
+  });
 
 
 });
