@@ -1,7 +1,7 @@
 import { LoginController } from "./login";
 import { InvalidParamError, MissingParamError } from '../../errors';
 import { Authentication, Controller, HttpRequest, Validation } from './login-protocols';
-import { badRequest, serverError, unauthorized, ok} from './../../helpers/http-helper';
+import { badRequest, serverError, unauthorized, ok} from '../../helpers/http/http-helper';
 
 
 const makeRequest = (): HttpRequest => {
