@@ -46,7 +46,7 @@ describe('Account Mongo Respository', () => {
       email: 'any_email@mail.com',
       password: 'any_password'
     });
-    
+
     const account = await sut.loadByEmail('any_email@mail.com');
 
 
@@ -57,4 +57,11 @@ describe('Account Mongo Respository', () => {
     expect(account.password).toBe('any_password');
 
   });
+
+  test('Should return null on loadByEmail fails', async () => {
+    const sut = makeSut();
+    const account = await sut.loadByEmail('any_mail@mail.com');
+    expect(account).toBeFalsy()
+  });
+
 });
