@@ -1,5 +1,5 @@
 import { Validation } from '../../../presentation/protocols/validation';
-import { EmailValidatorAdapter } from '../../../utils/email-validator-adapter';
+import { EmailValidatorAdapter } from '../../adpters/validators/email-validator-adapter';
 import { EmailValidation, RequiredFieldValidation, ValidationComposite } from '../../../presentation/helpers/validators';
 
 export const makeLoginValidation = (): Validation => {
@@ -8,7 +8,7 @@ export const makeLoginValidation = (): Validation => {
     validations.push(new RequiredFieldValidation(field));
   }
   const emailValidatorAdapter = new EmailValidatorAdapter();
-  validations.push(new EmailValidation(emailValidatorAdapter, 'email'));
+  validations.push(new EmailValidation('email', emailValidatorAdapter));
 
   const validationComposite = new ValidationComposite(validations);
   return validationComposite;

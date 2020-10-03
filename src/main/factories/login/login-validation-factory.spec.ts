@@ -23,7 +23,7 @@ describe('LoginValidation Factory', () => {
     for (const field of ['email', 'password']) {
       validations.push(new RequiredFieldValidation(field));
     }
-    validations.push(new EmailValidation(makeEmailValidator(), 'email'))
+    validations.push(new EmailValidation('email', makeEmailValidator()))
 
     expect(ValidationComposite).toHaveBeenCalledWith(validations);
   });
