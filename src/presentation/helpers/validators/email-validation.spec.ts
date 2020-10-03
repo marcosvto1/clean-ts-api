@@ -19,7 +19,7 @@ interface SutTypes{
 
 const makeSut = (): SutTypes => {
   const emailValidatorStub = makeEmailValidator();
-  const sut = new EmailValidation(emailValidatorStub, 'email');
+  const sut = new EmailValidation('email', emailValidatorStub);
   return {
     emailValidatorStub,
     sut
