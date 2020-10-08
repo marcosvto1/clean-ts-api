@@ -5,7 +5,8 @@
     "target": "es2019", // Gerar com padrão do es2019 
     "esModuleInterop": true, // convert module using require in import
     "allowJs": true,
-    "sourceMap": true // permiti incluir arquivos de config .js no dist 
+    "sourceMap": true,
+    "rootDir": "src" 
   },
   "include": [
     "src"
