@@ -1,3 +1,5 @@
+import { EmailInUseError } from './../../errors/email-in-use-error';
+import { forbidden } from './../../helpers/http/http-helper';
 import { HttpRequest } from '../../protocols/http';
 import { SignUpController } from './signup-controller';
 import { MissingParamError, InvalidParamError, ServerError } from '../../errors';
@@ -125,6 +127,14 @@ describe('SignUp Controller', () => {
     const {sut } = makeSut();
     const httpResponse = await sut.handle(makeFakeRequest());
     expect(httpResponse).toEqual(ok({accessToken: 'any_token'}));
+  });
+
+  test('Should return 403 if AddAccount return null', async () => {
+    const { sut, addAccountStub } = makeSut();
+    jest.spyOn(addAccountStub, 'add').mockReturnValueOnce(new Promise(resolve => resolve(null)));
+
+    const httpResponse = await sut.handle(makeFakeRequest());
+    expect(httpResponse).toEqual(forbidden(new EmailInUseError()));
   });
 
   test('Should call Validation with correct value', () => {
