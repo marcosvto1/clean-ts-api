@@ -28,3 +28,8 @@ export const ok = (data: any): HttpResponse => (
     body: data
   }
 )
+
+export const forbidden = (error?: Error): HttpResponse => ({
+  statusCode: 403,
+  body: error
+});
