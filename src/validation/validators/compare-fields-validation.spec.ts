@@ -1,6 +1,6 @@
 import { CompareFieldsValidation } from './compare-fields-validation';
-import { MissingParamError } from '../../errors/missing-param-error';
-import { InvalidParamError } from '../../errors';
+import { MissingParamError } from '../../presentation/errors/missing-param-error';
+import { InvalidParamError } from '../../presentation/errors';
 
 const makeSut = (): CompareFieldsValidation =>  {
   return new CompareFieldsValidation('any_field', 'any_field_compare');
