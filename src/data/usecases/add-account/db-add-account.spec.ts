@@ -7,8 +7,7 @@ import { exec } from 'child_process';
 const makeLoadAccountByEmailRepositoryStub = (): LoadAccountByEmailRepository => {
   class LoadAccountByEmailRepositoryStub implements LoadAccountByEmailRepository {
     async loadByEmail (email: string): Promise<AccountModel> {
-      const account = makeFakeAccount();
-      return new Promise(resolve => resolve(account) )
+      return new Promise(resolve => resolve(null) )
      }
   }
   return new LoadAccountByEmailRepositoryStub();
@@ -68,10 +67,10 @@ const makeSut = (): sutTypes => {
 } 
 
 describe('DbAddAccount Usecase', () => {
-  test('Should call hasher with correct password', () => {
+  test('Should call hasher with correct password', async () => {
     const {sut, hasherStub} = makeSut();
     const encryptSpy = jest.spyOn(hasherStub, 'hash');
-    sut.add(makeFakerAccountData());
+    await sut.add(makeFakerAccountData());
     expect(encryptSpy).toHaveBeenCalledWith('valid_password');
   });
 
@@ -116,6 +115,14 @@ describe('DbAddAccount Usecase', () => {
     await sut.add(makeFakeAccount());
     expect(loadByEmailSpy).toHaveBeenCalledWith(makeFakeAccount().email);
   });
+
+  test('Should return null if LoadAccountByEmailRepository return null', async () => {
+    const {sut, loadAccountByEmailRepositoryStub } = makeSut();
+    jest.spyOn(loadAccountByEmailRepositoryStub, 'loadByEmail').mockReturnValueOnce(Promise.resolve(makeFakeAccount()));
+    const account = await sut.add(makeFakeAccount());
+    expect(account).toBeNull();
+  });
+
 
 
 });
