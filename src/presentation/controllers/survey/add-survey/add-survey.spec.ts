@@ -95,5 +95,7 @@ describe('AddSurvey Controller', () => {
     const response = await sut.handle(httpRequest);
 
     expect(response).toEqual(serverError(new Error()));
-  })
+  });
+
+  
 })
