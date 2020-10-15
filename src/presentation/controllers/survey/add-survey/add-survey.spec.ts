@@ -1,17 +1,30 @@
-import { badRequest } from './../../../helpers/http/http-helper';
-import { Validation } from './../../../protocols/validation';
 import { AddSurveyController } from './add-survey-controller';
-import { HttpRequest } from './add-survey-controller-protocols';
+import { Validation, HttpRequest, AddSurvey } from './add-survey-controller-protocols';
+import { badRequest } from './../../../helpers/http/http-helper';
+import { SurveyModel } from './../../../../domain/models/survey';
+
+const makeSurvey = () => ({
+  question: 'any_question',
+  answers: [{
+    image: 'any_image',
+    answer: 'any_answer'
+  }]
+});
 
 const makeFakeRequest = (): HttpRequest => ({
-  body: {
-    question: 'any_question',
-    answers: [{
-      image: 'any_image',
-      answer: 'any_answer'
-    }]
-  }
+  body: makeSurvey()
 });
+
+const makeAddSurvey = (): AddSurvey => {
+  class AddSurveyStub implements AddSurvey {
+    async add(survey: any): Promise<SurveyModel> {
+      return Promise.resolve(makeSurvey());
+    }
+  }
+
+  const addSurveyStub = new AddSurveyStub();
+  return addSurveyStub;
+}
 
 const makeValidationStub = (): Validation => {
   class ValidationStub implements Validation {
@@ -26,15 +39,18 @@ const makeValidationStub = (): Validation => {
 interface SutTypes {
   sut: AddSurveyController;
   validationStub: Validation;
+  addSurveyStub: AddSurvey
 }
 
 const makeSut = (): SutTypes => {
   const validationStub = makeValidationStub();
-  const sut = new AddSurveyController(validationStub);
+  const addSurveyStub = makeAddSurvey();
+  const sut = new AddSurveyController(validationStub, addSurveyStub);
 
   return {
     sut,
-    validationStub
+    validationStub,
+    addSurveyStub
   }
 }
 
@@ -56,4 +72,14 @@ describe('AddSurvey Controller', () => {
     expect(response).toEqual(badRequest(new Error()));
 
   });
+
+  test('Should call AddSurvey with correct values', async () => {
+    const { sut, addSurveyStub } = makeSut();
+    const addSpy = jest.spyOn(addSurveyStub, 'add');
+
+    const httpRequest = makeFakeRequest();
+    await sut.handle(httpRequest);
+
+    expect(addSpy).toHaveBeenCalledWith(httpRequest.body);
+  })
 })
