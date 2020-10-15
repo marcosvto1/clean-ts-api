@@ -1,11 +1,11 @@
-import { EmailInUseError } from './../../errors/email-in-use-error';
-import { forbidden } from './../../helpers/http/http-helper';
-import { HttpRequest } from '../../protocols/http';
+import { EmailInUseError } from './../../../errors/email-in-use-error';
+import { forbidden } from './../../../helpers/http/http-helper';
+import { HttpRequest } from '../../../protocols/http';
 import { SignUpController } from './signup-controller';
-import { MissingParamError, ServerError } from '../../errors';
+import { MissingParamError, ServerError } from '../../../errors';
 import { AddAccount, AddAccountModel, AccountModel } from './signup-controller-protocols';
-import { ok, serverError, badRequest } from '../../helpers/http/http-helper';
-import { Validation } from '../../protocols/validation';
+import { ok, serverError, badRequest } from '../../../helpers/http/http-helper';
+import { Validation } from '../../../protocols/validation';
 import { Authentication, AuthenticationModel } from '../login/login-controller-protocols';
 
 const makeFakerAccount = (): AccountModel => ({
