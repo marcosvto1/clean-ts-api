@@ -5,7 +5,7 @@
 1. 📌 Valida se a requisição foi feita por um admin
 1. 📌 Valida dados obrigatórios **question** e **anwers**
 1. 📌 Criar uma enquete com os dados fornecidos
-1. 📌 Retorna 204
+1. ✅ Retorna 204
 
 > ## Exceções
 
