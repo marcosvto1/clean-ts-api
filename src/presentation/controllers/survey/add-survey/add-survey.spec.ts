@@ -18,8 +18,8 @@ const makeFakeRequest = (): HttpRequest => ({
 
 const makeAddSurvey = (): AddSurvey => {
   class AddSurveyStub implements AddSurvey {
-    async add(survey: any): Promise<SurveyModel> {
-      return Promise.resolve(makeSurvey());
+    async add(survey: any): Promise<void> {
+      return Promise.resolve(null);
     }
   }
 
