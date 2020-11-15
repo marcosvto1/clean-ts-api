@@ -1,14 +1,16 @@
-import { Encrypter } from './../../../data/protocols/criptography/encrypter';
 import { JwtAdapter } from './jwt-adapter';
 import jwt from 'jsonwebtoken';
 
 jest.mock('jsonwebtoken', () => ({
   sign: async (): Promise<string> => {
     return Promise.resolve('any_token');
+  },
+  verify: async (): Promise<string> => {
+    return Promise.resolve('any_value');
   }
 }));
 
-const makeSut = (): Encrypter => {
+const makeSut = (): JwtAdapter => {
   return new JwtAdapter('secret');
 }
 
@@ -38,5 +40,13 @@ describe('Jwt Adapter', () => {
     });
   });
 
+  describe('verify()', () => {
+      test('Should call verify with corrent values', async () => {
+        const sut = makeSut();
+        const verifySpy = jest.spyOn(jwt, 'verify');
+        await sut.decrypt('any_token');
+        expect(verifySpy).toHaveBeenCalledWith('any_token', 'secret');
+      });
+  })
 
 });
