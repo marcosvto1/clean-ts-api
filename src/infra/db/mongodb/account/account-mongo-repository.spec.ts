@@ -125,6 +125,12 @@ describe('Account Mongo Respository', () => {
       expect(account).toBeTruthy();
     });
  
+    test('Should return null on loadByToken fails', async () => {
+      const sut = makeSut();
+      const account = await sut.loadByToken('any_token');
+      expect(account).toBeFalsy()
+    });
+
   });
 
 
