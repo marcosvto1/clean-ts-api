@@ -43,7 +43,7 @@ describe('Account Mongo Respository', () => {
 
   });
 
-  describe('LoadByEmail', () => {
+  describe('LoadByEmail()', () => {
 
     test('Should return an account on loadByEmail success', async () => {
       const sut = makeSut();
@@ -71,7 +71,7 @@ describe('Account Mongo Respository', () => {
     });
   });
 
-  describe('updateAccessToken', () => {
+  describe('updateAccessToken()', () => {
     test('Should update the account accessToken on updateAccessToken success', async () => {
       const sut = makeSut();
       const res = await accountCollection.insertOne({
