@@ -1,8 +1,8 @@
-import { adaptMiddleware } from './../adpters/express-middleware-adapter';
-import { makeAuthMiddleware } from './../factories/middlewares/auth-middleware-factory';
+import { adaptMiddleware } from '@/main/adpters/express-middleware-adapter';
+import { makeAuthMiddleware } from '@/main/factories/middlewares/auth-middleware-factory';
 import { Router } from 'express';
-import { adaptRoute } from '../adpters/express-route-adapter';
-import { makeAddSurveyController } from '../factories/controllers/survey/add-survey/add-survey-controller-factory';
+import { adaptRoute } from '@/main/adpters/express-route-adapter';
+import { makeAddSurveyController } from '@/main/factories/controllers/survey/add-survey/add-survey-controller-factory';
 
 export default (router: Router): void => {
   const adminAuth = adaptMiddleware(makeAuthMiddleware('admin'));

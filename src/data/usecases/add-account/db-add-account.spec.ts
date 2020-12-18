@@ -1,8 +1,7 @@
+import { AddAccountRepository } from '@/data/protocols/db/account/add-account-repository';
+import { LoadAccountByEmailRepository } from '@/data/usecases/authentication/db-authentication-protocols';
 import { AccountModel, AddAccountModel, Hasher } from './db-add-account-protocols';
 import { DbAddAccount } from './db-add-account';
-import { AddAccountRepository } from '../../protocols/db/account/add-account-repository';
-import { LoadAccountByEmailRepository } from '../authentication/db-authentication-protocols';
-import { exec } from 'child_process';
 
 const makeLoadAccountByEmailRepositoryStub = (): LoadAccountByEmailRepository => {
   class LoadAccountByEmailRepositoryStub implements LoadAccountByEmailRepository {

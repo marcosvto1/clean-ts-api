@@ -1,8 +1,6 @@
 import { AddSurveyController } from './add-survey-controller';
 import { Validation, HttpRequest, AddSurvey } from './add-survey-controller-protocols';
-import { badRequest, serverError, noContent } from './../../../helpers/http/http-helper';
-import { SurveyModel } from './../../../../domain/models/survey';
-import { rejects } from 'assert';
+import { badRequest, serverError, noContent } from '@/presentation/helpers/http/http-helper';
 
 const makeSurvey = () => ({
   question: 'any_question',

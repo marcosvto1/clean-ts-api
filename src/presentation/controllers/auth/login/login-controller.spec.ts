@@ -1,9 +1,8 @@
-import { AuthenticationModel } from '../../../../domain/usecases/authentication';
-import { LoginController } from "./login-controller";
-import { InvalidParamError, MissingParamError } from '../../../errors';
+import { AuthenticationModel } from '@/domain/usecases/authentication';
+import { MissingParamError } from '@/presentation/errors';
+import { badRequest, serverError, unauthorized, ok} from '@/presentation/helpers/http/http-helper';
 import { Authentication, Controller, HttpRequest, Validation } from './login-controller-protocols';
-import { badRequest, serverError, unauthorized, ok} from '../../../helpers/http/http-helper';
-
+import { LoginController } from "./login-controller";
 
 const makeRequest = (): HttpRequest => {
   return {
