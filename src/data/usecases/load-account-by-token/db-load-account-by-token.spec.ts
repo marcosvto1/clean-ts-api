@@ -31,7 +31,7 @@ const makeDecrypterStub = () => {
   return new DecrypterStub();
 }
 
-interface SutTypes {
+type SutTypes = {
   sut: LoadAccountByToken,
   decrypterStub: Decrypter,
   loadAccountByTokenRepositoryStub: LoadAccountByTokenRepository
