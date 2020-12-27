@@ -60,11 +60,11 @@ describe('AddSurvey Controller', () => {
 
   beforeAll(() => {
     MockDate.set(new Date())
-  })
+  });
 
   afterAll(() => {
     MockDate.reset()
-  })
+  });
 
   test('Should call Validation with correct values', async () => {
     const { sut , validationStub } = makeSut();
