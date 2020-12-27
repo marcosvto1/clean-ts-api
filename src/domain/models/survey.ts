@@ -4,6 +4,8 @@ export type SurveyAnswer = {
 }
 
 export type SurveyModel = {
+  id: string;
   question: string;
-  answers: SurveyAnswer[]
+  answers: SurveyAnswer[],
+  date: Date,
 }
