@@ -1,17 +1,28 @@
+import { LoadSurveyByIdRepository } from '@/data/protocols/db/survey/load-survey-by-id-repository';
 import { AddSurveyModel } from '@/domain/usecases/add-survey';
 import { AddSurveyRepository } from '@/data/protocols/db/survey/add-survey-repository';
 import { MongoHelper } from './../helpers/mongo-helper';
 import { SurveyModel } from '@/domain/models/survey';
+import { LoadSurveysRepository } from '@/data/protocols/db/survey/load-survey-repository';
 
-export class SurveyMongoRepository implements AddSurveyRepository {
+interface SurveyRepository extends AddSurveyRepository, LoadSurveysRepository, LoadSurveyByIdRepository {}
+
+export class SurveyMongoRepository implements SurveyRepository {
+
   async add(data: AddSurveyModel): Promise<void> {
-    const mongoCollection = await MongoHelper.getCollection('surveys');
-    await mongoCollection.insertOne(data);
+    const surveyCollection = await MongoHelper.getCollection('surveys');
+    await surveyCollection.insertOne(data);
   }
 
   async loadAll(): Promise<SurveyModel[]> {
-    const mongoCollection = await MongoHelper.getCollection('surveys');
-    const surveys: SurveyModel[] = await mongoCollection.find().toArray();
+    const surveyCollection = await MongoHelper.getCollection('surveys');
+    const surveys: SurveyModel[] = await surveyCollection.find().toArray();
+    return surveys; 
+  }
+
+  async loadById(id: string): Promise<SurveyModel> {
+    const surveyCollection = await MongoHelper.getCollection('surveys');
+    const surveys: SurveyModel = await surveyCollection.findOne({_id: id})
     return surveys; 
   }
 }
