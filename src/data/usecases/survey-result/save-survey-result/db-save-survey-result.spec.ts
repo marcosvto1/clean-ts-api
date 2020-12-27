@@ -1,11 +1,11 @@
-import { SaveSurveyResultRepository, SurveyResultModel, SaveSurveyResultModel, SaveSurveyResult } from './db-save-survey-result-protocols'
+import { SaveSurveyResultRepository, SurveyResultModel, SaveSurveyResultModel } from './db-save-survey-result-protocols'
 import { DbSaveSurveyResult } from './db-save-survey-result';
 import MockDate from 'mockdate';
 
 const makeSurveyResultData = () => ({
   surveyId: 'any_survey_id',
   accountId: 'any_account_id',
-  answers: 'any_answers',
+  answer: 'any_answers',
   date: new Date(),
 });
 

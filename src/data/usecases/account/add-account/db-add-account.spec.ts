@@ -1,5 +1,5 @@
 import { AddAccountRepository } from '@/data/protocols/db/account/add-account-repository';
-import { LoadAccountByEmailRepository } from '@/data/usecases/authentication/db-authentication-protocols';
+import { LoadAccountByEmailRepository } from '@/data/usecases/account/authentication/db-authentication-protocols';
 import { AccountModel, AddAccountModel, Hasher } from './db-add-account-protocols';
 import { DbAddAccount } from './db-add-account';
 
