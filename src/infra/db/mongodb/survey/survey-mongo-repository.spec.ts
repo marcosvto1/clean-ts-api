@@ -3,6 +3,7 @@ import { Collection } from "mongodb";
 import { MongoHelper } from "../helpers/mongo-helper";
 
 let surveyCollection: Collection;
+
 const makeSurvey = () => ({
   question: 'any_question',
   answers: [{
@@ -12,10 +13,9 @@ const makeSurvey = () => ({
   {
     answer: 'other_answer'
   }
-]
+],
+  date: new Date()
 });
-
-
 
 describe('Survey Mongo Repository', () => {
 

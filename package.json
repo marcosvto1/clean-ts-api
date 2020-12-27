@@ -44,6 +44,7 @@
     "install": "^0.13.0",
     "jest": "^26.4.2",
     "lint-staged": "^10.3.0",
+    "mockdate": "^3.0.2",
     "rimraf": "^3.0.2",
     "supertest": "^4.0.2",
     "ts-jest": "^26.3.0",
