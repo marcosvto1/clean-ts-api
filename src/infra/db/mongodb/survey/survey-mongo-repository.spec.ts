@@ -51,7 +51,9 @@ describe('Survey Mongo Repository', () => {
       const res = await surveyCollection.insertOne(makeSurvey());
       const sut = makeSut();      
       const survey = await sut.loadById(res.ops[0]._id);
+      console.log(survey);
       expect(survey).toBeTruthy();
+      expect(survey.id).toBeTruthy();
     });
   })
 })
