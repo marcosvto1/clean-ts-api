@@ -8,7 +8,7 @@
 4. (x) Valida se o parâmetro **answer** é uma resposta válida
 5. (x) **Cria** um resultado de enquete com os dados fornecido caso não tenha um registro
 6. (x) **Atualiza** um resultado de enquete com os dados fornecido caso já tenha um registro
-7. () Retorna **200** com os dados do resultado da enquete
+7. (x) Retorna **200** com os dados do resultado da enquete
 
 > ## Execeções
 

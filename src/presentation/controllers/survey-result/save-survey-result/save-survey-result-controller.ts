@@ -1,4 +1,5 @@
-import { serverError } from './../../../helpers/http/http-helper';
+import { ok } from '@/presentation/helpers/http/http-helper';
+import { serverError } from '@/presentation/helpers/http/http-helper';
 import { HttpRequest, HttpResponse, Controller, LoadSurveyById, SaveSurveyResult, forbidden, InvalidParamError } from './save-survey-result-protocols';
 
 export class SaveSurveyResultController implements Controller {
@@ -24,7 +25,8 @@ export class SaveSurveyResultController implements Controller {
           accountId, 
           answer, 
           date: new Date() 
-        });      
+        });
+        return ok(surveyResult);
       } else {
         return forbidden(new InvalidParamError('surveyId'));
       }
