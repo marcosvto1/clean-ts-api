@@ -51,6 +51,11 @@ describe('DbAddSurvey Usecase', () => {
     expect(addSpy).toHaveBeenCalledWith(makeSurveyResultData());
   });
 
+  test('Should return SurveyResult on success', async () => {
+    const { sut } = makeSut();
+    const surveyResult = await sut.save(makeSurveyResultData());
+    expect(surveyResult).toEqual(makeSurveyResult());
+  });
 
   test('Should throws if SaveSurveyResultRepository throws', async () => {
     const { sut, saveSurveyResultRepositoryStub } = makeSut();
